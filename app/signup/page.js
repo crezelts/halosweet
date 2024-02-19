@@ -5,7 +5,7 @@ import React, { useEffect } from "react"
 
 
 
-function SignInForm() {
+function SignUpForm() {
   useEffect(() => {
     const signInForm = document.getElementById('signInForm');
 
@@ -84,4 +84,4 @@ function SignInForm() {
   );
 }
 
-export default SignInForm;
+export default SignUpForm;
