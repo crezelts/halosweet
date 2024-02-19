@@ -17,7 +17,7 @@ function SignInForm() {
       const password = formData.get('password');
 
       try {
-        const response = await fetch('../api/auth', {
+        const response = await fetch('/api/auth', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
