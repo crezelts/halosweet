@@ -39,6 +39,8 @@ function SignUpForm() {
   }, []); // { useEffect 내부에서만 1번 실행되도록 빈 배열을 전달 }
 
   return (
+<div>
+  <link rel="preload" href="/path/to/font.woff2" as="font" type="font/woff2" crossorigin></link>
    <div className="mt-20">
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -81,6 +83,7 @@ function SignUpForm() {
       </div>
     </div>
   </div> 
+</div>
   );
 }
 
