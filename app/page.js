@@ -12,6 +12,9 @@ function Home() {
 
   return (
   <div>
+    <head>
+        <link rel="preload" href="https://brainb.netlify.app/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" as="font" type="font/woff2" crossorigin />
+    </head>
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
