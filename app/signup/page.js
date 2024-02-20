@@ -26,10 +26,11 @@ function SignUpForm() {
         }
 
         // { 가입 성공 }
-        console.log('User signed up successfully'); 
+        response.status(200).json({ message: 'User signed up successfully' })
         window.location.href = '/'; 
       } catch (error) {
         console.error('Error signing up:', error); 
+        res.status(500).json({ message: 'Internal Server Error' })
       }
     });
   }, []);

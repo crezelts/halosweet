@@ -1,7 +1,3 @@
-// { api connect }
-// /pages/api/auth.js
-
-
 import { MongoClient } from 'mongodb';
 
 async function connectToMongoDB() {
@@ -13,7 +9,7 @@ async function connectToMongoDB() {
     await client.connect();
     const database = client.db("ifream");
     const ratings = database.collection("post");
-    return { ratings };
+    return { client, ratings };
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
     throw error;
@@ -21,7 +17,7 @@ async function connectToMongoDB() {
 }
 
 async function fetchData() {
-  const { ratings } = await connectToMongoDB();
+  const { client, ratings } = await connectToMongoDB();
   
   try {
     const cursor = ratings.find();
@@ -36,4 +32,3 @@ async function fetchData() {
 }
 
 fetchData().catch(console.error);
-
