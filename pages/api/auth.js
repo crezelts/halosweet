@@ -1,30 +1,32 @@
 // pages/api/auth.js
 
-import { open } from 'sqlite';
-import sqlite3 from 'sqlite3';
+import mysql from 'mysql2/promise';
 
-// 데이터베이스 파일 경로
-const dbPath = './mydatabase.db';
+// 환경 변수에서 데이터베이스 연결 정보를 가져옵니다.
+const dbConfig = {
+  host: 'localhost', 
+  port: '3307',
+  user: 'root',
+  password: '070226', 
+  database: 'mydatabase' 
+};
 
-// 데이터베이스 생성 및 연결
+// 데이터베이스에 연결하는 함수
 async function connectToDatabase() {
-  const db = await open({
-    filename: dbPath,
-    driver: sqlite3.Database
-  });
-  return db;
+  const connection = await mysql.createConnection(dbConfig);
+  return connection;
 }
 
 // 사용자 정보를 삽입하는 함수
 async function insertUser(email, password) {
-  const db = await connectToDatabase();
+  const connection = await connectToDatabase();
   try {
-    await db.run('INSERT INTO users (email, password) VALUES (?, ?)', [email, password]);
+    await connection.execute('INSERT INTO users (email, password) VALUES (?, ?)', [email, password]);
     console.log('User inserted successfully');
   } catch (error) {
     console.error('Error inserting user:', error);
   } finally {
-    await db.close();
+    await connection.end();
   }
 }
 
