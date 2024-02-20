@@ -16,10 +16,10 @@ async function connectToDatabase() {
 }
 
 // 사용자 정보를 삽입하는 함수
-async function insertUser(email) {
+async function insertUser(email, password) {
   const db = await connectToDatabase();
   try {
-    await db.run('INSERT INTO users (email) VALUES (?)', [email]);
+    await db.run('INSERT INTO users (email, password) VALUES (?, ?)', [email, password]);
     console.log('User inserted successfully');
   } catch (error) {
     console.error('Error inserting user:', error);
@@ -34,11 +34,11 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { email } = req.body;
+  const { email, password } = req.body;
 
   try {
     // 사용자 정보를 삽입합니다.
-    await insertUser(email);
+    await insertUser(email, password);
 
     // 사용자 가입이 성공한 경우 200 OK를 반환합니다.
     res.status(200).json({ message: 'User signed up successfully' });
