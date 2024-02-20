@@ -2,28 +2,38 @@
 // /pages/api/auth.js
 
 
-import { MongoClient } from 'mongodb'
+import { MongoClient } from 'mongodb';
 
+async function connectToMongoDB() {
+  const uri =
+    'mongodb+srv://cudd:C50OpQtP8O8bgBSH@cluster0.exl9lhe.mongodb.net/';
+  const client = new MongoClient(uri);
 
-
-
-const username = encodeURIComponent("cudd");
-const password = encodeURIComponent("C500pQtP808bgBSH");
-const cluster = "cluster0";
-const authSource = "exl9lhe";
-const authMechanism = "mongodb.net/";
-let uri =
-  `mongodb+srv://${username}:${password}@${cluster}/?authSource=${authSource}&authMechanism=${authMechanism}`;
-const client = new MongoClient(uri);
-async function run() {
   try {
     await client.connect();
-    const database = client.db("BrainB");
+    const database = client.db("ifream");
     const ratings = database.collection("post");
-    const cursor = ratings.find();
-    await cursor.forEach(doc => console.dir(doc));
-  } finally {
-    await client.close();
+    return { ratings };
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    throw error;
   }
 }
-run().catch(console.dir);
+
+async function fetchData() {
+  const { ratings } = await connectToMongoDB();
+  
+  try {
+    const cursor = ratings.find();
+    const documents = await cursor.toArray();
+    documents.forEach(doc => console.dir(doc));
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  } finally {
+    client.close();
+  }
+}
+
+fetchData().catch(console.error);
+

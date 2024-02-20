@@ -36,9 +36,6 @@ function SignUpForm() {
 
   return (
 <div>
-  <head>
-    <link rel="preload" href="/path/to/font.woff2" as="font" type="font/woff2" crossorigin></link>
-  </head>
    <div className="mt-20">
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
