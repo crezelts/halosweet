@@ -1,41 +1,33 @@
 "use client";
 import React, { useEffect } from "react";
+import axios from 'axios'
 
 function SignUpForm() {
-  useEffect(() => {
-    const signUpForm = document.getElementById('signUpForm');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-    signUpForm.addEventListener('submit', async function(event) { 
-      event.preventDefault();
-
-      const formData = new FormData(signUpForm); 
-      const email = formData.get('email');
-      const password = formData.get('password');
-
-      try {
-        const response = await fetch('/api/auth', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email, password })
-        });
-
-        if (!response.ok) {
-          const errorMessage = await response.json(); // 서버에서 보낸 오류 메시지를 가져옵니다.
-          throw new Error(errorMessage.message); // 오류 메시지를 throw하여 catch 블록으로 이동합니다.
-        }
-
-        // { 가입 성공 }
-        console.log('User signed up successfully'); 
-        window.location.href = '/'; 
-      } catch (error) {
-        console.error('Error signing up:', error); 
-        // 서버에서 오류 메시지를 받지 못한 경우에 대한 기본적인 오류 메시지를 출력합니다.
-        alert('Failed to sign up');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.post('/api/auth', { email, password });
+      
+      console.log(response.data); // 서버에서 받은 응답 로그에 출력
+      
+      // 회원가입 성공 시 홈페이지로 리다이렉트
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error signing up:', error);
+      
+      if (error.response) {
+        // 서버에서 받은 오류 메시지를 화면에 표시
+        setError(error.response.data.message);
+      } else {
+        setError('Failed to sign up');
       }
-    });
-  }, []);
+    }
+  };
 
   return (
     <div>
@@ -47,11 +39,12 @@ function SignUpForm() {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form id="signUpForm" className="space-y-6"> 
+            {error && <p>{error}</p>}
+            <form onSubmit={handleSubmit} className="space-y-6"> 
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">Email address</label>
                 <div className="mt-2">
-                  <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600 sm:text-sm sm:leading-6 pl-2 font-semibold" />
+                  <input id="email" name="email" type="email" autoComplete="email" onChange={(e) => setEmail(e.target.value)} required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600 sm:text-sm sm:leading-6 pl-2 font-semibold" />
                 </div>
               </div>
 
@@ -63,7 +56,7 @@ function SignUpForm() {
                   </div>
                 </div>
                 <div className="mt-2">
-                  <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600 sm:text-sm sm:leading-6 pl-2 font-semibold" />
+                  <input id="password" name="password" type="password" autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600 sm:text-sm sm:leading-6 pl-2 font-semibold" />
                 </div>
               </div>
 
