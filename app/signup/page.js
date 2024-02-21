@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from "react";
-import { Helmet } from "react-helmet";
 import axios from 'axios';
 
 
@@ -33,15 +32,6 @@ function SignUpForm() {
 
   return (
    <div>
-      <Helmet>
-        <link
-          rel="preload"
-          href="https://brainb.netlify.app/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </Helmet>
       <div className="mt-20">
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">

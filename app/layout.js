@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { Helmet } from "react-helmet";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -11,6 +12,15 @@ export const metadata = {
 function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Helmet>
+        <link
+          rel="preload"
+          href="https://brainb.netlify.app/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </Helmet>
       <body className={inter.className}>{children}</body>
     </html>
   );
