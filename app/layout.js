@@ -1,5 +1,4 @@
 import { Inter } from "next/font/google";
-import { Helmet } from "react-helmet";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });

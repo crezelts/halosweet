@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import axios from 'axios';
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 
 
 function SignUpForm() {
@@ -33,15 +33,11 @@ function SignUpForm() {
 
   return (
    <div>
-      <Helmet>
-        <link
-          rel="preload"
-          href="https://brainb.netlify.app/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </Helmet>
+    <Head>
+      <title>Home Page</title>
+      <meta name="description" content="This is the home page" />
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" crossorigin="anonymous" />
+    </Head>
       <div className="mt-20">
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -89,3 +85,4 @@ function SignUpForm() {
 }
 
 export default SignUpForm;
+

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 
 function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,15 +13,11 @@ function Home() {
 
   return (
   <div>
-      <Helmet>
-        <link
-          rel="preload"
-          href="https://brainb.netlify.app/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </Helmet>
+    <Head>
+      <title>Home Page</title>
+      <meta name="description" content="This is the home page" />
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" crossorigin="anonymous" />
+    </Head>
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
