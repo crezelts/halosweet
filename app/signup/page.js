@@ -13,7 +13,7 @@ function SignUpForm() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('https://brainb.netlify.app/api/auth', { email, password });
+      const response = await axios.post('/api/auth', { email, password });
       
       console.log(response.data); // 서버에서 받은 응답 로그에 출력
       
@@ -83,7 +83,6 @@ function SignUpForm() {
     </div>  
   );
 }
-
 
 export default SignUpForm;
 
