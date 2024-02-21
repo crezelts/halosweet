@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import './globals.css'
 
 function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import axios from 'axios';
+import '../globals.css'
 
 function SignUpForm() {
   const [email, setEmail] = useState('');
