@@ -13,11 +13,11 @@ function SignUpForm() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('/api/auth', { email, password });
+      const response = await axios.post('/api/halo_man', { email, password });
       
       console.log(response.data); // 서버에서 받은 응답 로그에 출력
       
-      // 회원가입 성공 시 홈페이지로 리다이렉트
+
       window.location.href = '/';
     } catch (error) {
       console.error('Error signing up:', error);
