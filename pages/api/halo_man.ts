@@ -25,7 +25,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
       response.status(400).end("Bad Request")
       return
     }
-
+    
     try {
       // 데이터베이스에 데이터를 추가합니다.
       await collection.insertOne({ email, password })

@@ -8,7 +8,7 @@ const connectToDatabase = async () => {
   }
   try {
     const mongoClient: MongoClient = await new MongoClient(uri).connect()
-    const database: Db = mongoClient.db('post')
+    const database: Db = mongoClient.db('BrainB')
     return { mongoClient, database }
   } catch (e) {
     console.error(e)
