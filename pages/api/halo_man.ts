@@ -12,7 +12,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
     return
   }
   
-  const collection = database.collection('post')
+  const collection = database.collection('jesus')
   
   if (request.method === 'GET') {
     const results = await collection.find({}).limit(10).toArray()
