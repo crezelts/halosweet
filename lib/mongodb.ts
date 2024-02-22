@@ -1,7 +1,7 @@
 import { MongoClient, Db } from 'mongodb'
 
 const connectToDatabase = async () => {
-  const uri: string | undefined = 'mongodb+srv://cudd:C50OpQtP8O8bgBSH@cluster0.exl9lhe.mongodb.net/BrainB'
+  const uri: string | undefined = process.env.MONGODB_URI;
   if (!uri) {
     console.error("Environment variable DB_CONNECT_URI is undefined.")
     return null;
