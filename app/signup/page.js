@@ -13,9 +13,9 @@ function SignUpForm() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('/api/halo_man', { email, password });
+      const response = await axios.post('pages/api/halo_man', { email, password });
       
-      console.log(response.data); // 서버에서 받은 응답 로그에 출력
+      console.log(response.data);
       
 
       window.location.href = '/';
