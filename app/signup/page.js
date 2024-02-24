@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Head from "next/head";
-import { AuthService } from "../../pages/auth.service.js";
+import { AuthService } from "../../pages/auth.service.ts";
 
 
 function SignUpForm() {
