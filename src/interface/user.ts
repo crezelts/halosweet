@@ -2,6 +2,7 @@
 export interface IUser {
   email: string;
   password: string;
+  name: string
 }
 
 // AuthService definition in auth.service.ts

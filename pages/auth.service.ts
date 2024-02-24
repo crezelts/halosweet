@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SupabaseService } from './superbase.service';
+import { SuperbaseService } from './superbase.service';
 import { IUser } from '../src/interface/user';
 
 @Injectable({
@@ -7,10 +7,10 @@ import { IUser } from '../src/interface/user';
 })
 export class AuthService {
 
-  constructor(private readonly supabase: SupabaseService) { }
+  constructor(private readonly supabase: SuperbaseService) { }
 
   // 사용자 등록 (sign up) 메서드
-  async signIn(userForm: IUser) {
+  async signUp(userForm: IUser) {
     const { email, password } = userForm;
     const { data, error } = await this.supabase.getSupabase().auth.signUp({ email, password });
 
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   // 사용자 로그인 (sign in) 메서드
-  async signUp(userForm: IUser) {
+  async signIn(userForm: IUser) {
     return await this.supabase.getSupabase().auth.signInWithPassword({
       email: userForm.email,
       password: userForm.password,
