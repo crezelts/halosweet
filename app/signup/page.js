@@ -1,35 +1,27 @@
 "use client"
 import React, { useState } from "react";
-import axios from 'axios';
 import Head from "next/head";
+import { AuthService } from "../../pages/auth.service.js";
 
 
 function SignUpForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const authService = new AuthService(); // Instantiate your authentication service
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
-      const response = await axios.post('pages/api/halo_man', { email, password });
-      
-      console.log(response.data);
-      
 
-      window.location.href = '/';
+    try {
+      // Call your authentication service method for signup
+      await authService.signUp({ email, password });
+      // Optionally, you can redirect the user or perform other actions upon successful signup
     } catch (error) {
-      console.error('Error signing up:', error);
-      
-      if (error.response) {
-        // 서버에서 받은 오류 메시지를 화면에 표시
-        setError(error.response.data.message);
-      } else {
-        setError('Failed to sign up');
-      }
+      setError(error.message);
     }
   };
+
 
   return (
    <div>
