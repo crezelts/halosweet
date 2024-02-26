@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SuperbaseService } from './superbase.service';
+import { SupabaseService } from './supabase.service';
 import { IUser } from '../src/interface/user';
 import { AuthService } from './auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 export class UserService {
 
   constructor(
-    private readonly supabase: SuperbaseService,
+    private readonly supabase: SupabaseService,
     private readonly authService: AuthService
   ) { }
 

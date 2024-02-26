@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-export class SuperbaseService {
+export class SupabaseService {
   private supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
   private supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
   private supabase = createClient(this.supabaseUrl, this.supabaseKey);
