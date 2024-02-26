@@ -1,20 +1,20 @@
 "use client"
 import React, { useState } from "react";
 import Head from "next/head";
-import { SuperbaseService } from "../../pages/supabase.service.ts";
+import { SupabaseService } from "../../pages/supabase.service.ts";
 
 
 function SignUpForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const superbaseService = new SuperbaseService();
+  const supabaseService = new SupabaseService();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await superbaseService.signUp({ email, password });
+      await supabaseService.signUp({ email, password });
       window.location.href = '/'
       // Optionally, you can use authService for other authentication-related actions
     } catch (error) {
