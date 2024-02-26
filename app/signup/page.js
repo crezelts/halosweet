@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Head from "next/head";
-import { SuperbaseService } from "../../pages/supabase.service.js";
+import { SuperbaseService } from "../../pages/supabase.service.ts";
 
 
 function SignUpForm() {
