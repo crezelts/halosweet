@@ -10,7 +10,7 @@ function SignUpForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch('/api/new-meetup', {
+      const response = await fetch('/.netlify/functions/new-meetup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
