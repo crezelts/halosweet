@@ -10,7 +10,7 @@ function SignUpForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch('/functions/new-meetup', {
+      const response = await fetch('/new-meetup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
