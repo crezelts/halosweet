@@ -5,7 +5,7 @@ async function handler(req, res) {
     const data = req.body
     const { email, password } = data
 
-  const client = await MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, poolSize: 10 });
+  const client = await MongoClient('mongodb+srv://cudd:C50OpQtP8O8bgBSH@cluster0.exl9lhe.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, poolSize: 10 });
   
 try {  
   await client.connect()
