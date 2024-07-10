@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>이광민 pop</h1>
+        <p id="target">0</p>
+        <img src="./kk.jpg" id="popcat1">
+    </div>
+    <script>
+        window.onload = () => {
+            let img = document.querySelector('#popcat1')
+            let counter = document.querySelector('#target')
+            let score = 0
+            // let sound = new Audio('pop.mp3')
+
+            img.addEventListener('mousedown', ()=> {
+                img.src = 'kk2.jpg'
+                addToCounter()
+                // sound.play()
+            })
+            img.addEventListener('mouseup', ()=> {
+                img.src = 'kk.jpg'
+            })
+            function addToCounter() {
+                score++
+                counter.innerHTML = score
+            }
+        }
+    </script>
+</body>
+</html>
