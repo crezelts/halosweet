@@ -1,0 +1,93 @@
+import pygame
+import sys
+
+# Pygame 초기화
+pygame.init()
+
+# 화면 크기 설정
+screen_width = 800
+screen_height = 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Moving Character Game")
+
+# 색깔 정의
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+# 캐릭터 설정
+character_width = 50
+character_height = 50
+character_x = screen_width // 2 - character_width // 2
+character_y = screen_height - character_height - 50
+character_speed = 5  # 캐릭터 기본 이동 속도
+max_speed = 10  # 캐릭터 최대 이동 속도
+acceleration = 0.5  # 가속도
+
+# 점프 관련 설정
+is_jump = False
+jump_count = 10  # 점프 높이 설정
+
+# FPS 설정
+clock = pygame.time.Clock()
+FPS = 60  # 초당 프레임 수 설정
+
+# 게임 루프
+running = True
+while running:
+    # FPS 설정
+    clock.tick(FPS)
+
+    # 이벤트 처리
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+            pygame.quit()
+            sys.exit()
+
+    # 키보드 상태 받아오기
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_SPACE] is not is_jump:
+        is_jump = True
+
+    # 왼쪽으로 이동
+    if keys[pygame.K_a]:
+        if character_speed < max_speed:
+            character_speed += acceleration  # 최대 속도까지 가속
+        character_x -= int(character_speed)
+    else:
+        character_speed = 5  # 기본 속도로 되돌리기
+
+    # 오른쪽으로 이동
+    if keys[pygame.K_d]:
+        if character_speed < max_speed:
+            character_speed += acceleration  # 최대 속도까지 가속
+        character_x += int(character_speed)
+    else:
+        character_speed = 5  # 기본 속도로 되돌리기
+
+    # 좌표 제한
+    if character_x < 0:
+        character_x = 0
+    elif character_x > screen_width - character_width:
+        character_x = screen_width - character_width
+
+    # 점프 로직 업데이트
+    if is_jump:
+        if jump_count >= -10:
+            neg = 1
+            if jump_count < 0:
+                neg = -1
+            character_y -= (jump_count ** 2) * 0.5 * neg
+            jump_count -= 1
+        else:
+            is_jump = False
+            jump_count = 10
+
+    # 화면 업데이트
+    screen.fill(WHITE)
+    pygame.draw.rect(screen, BLACK, [character_x, character_y, character_width, character_height])
+
+    pygame.display.update()
+
+pygame.quit()
